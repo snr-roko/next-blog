@@ -1,13 +1,12 @@
-export default function Blogs () {
+export type Blog = {
+    id: number;
+    title: string;
+    author: string;
+    url: string;
+    likes: number;
+}
 
-    type Blog = {
-        id: number;
-        title: string;
-        author: string;
-        url: string;
-        likes: number;
-    }
-    const blogs: Blog[] = [
+export const blogs: Blog[] = [
         {
             id: 1,
             title: "Announcing Next.js 13",
@@ -23,6 +22,8 @@ export default function Blogs () {
             likes: 5,
         },
     ]
+
+export default function Blogs () {
     return (
         <div className="max-w-2xl py-10 px-4">
             <h1 className="text-2xl font-semibold mb-6">Blogs</h1>
