@@ -24,12 +24,14 @@ export const blogs: Blog[] = [
     ]
 
 export default function Blogs () {
+    const sortedBlogs = [...blogs].sort((a, b) => b.likes - a.likes)
+
     return (
         <div className="max-w-2xl py-10 px-4">
             <h1 className="text-2xl font-semibold mb-6">Blogs</h1>
             <ul className="divide-y divide-gray-200">
                 {
-                    blogs.map((blog) => (
+                    sortedBlogs.map((blog) => (
                         <li key={blog.id} className="py-4">
                             <a
                                 href={`/blogs/${blog.id}`}
