@@ -32,9 +32,7 @@ export default function Blogs () {
                     blogs.map((blog) => (
                         <li key={blog.id} className="py-4">
                             <a
-                                href={blog.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                href={`/blogs/${blog.id}`}
                                 className="text-lg font-medium text-blue-600 hover:underline"
                             >
                                 {blog.title}
