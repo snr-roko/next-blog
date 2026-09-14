@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
-import { Blog, blogs } from "../page";
+import { blogs } from "../page";
+import { likeBlog } from "@/actions/likeBlogAction";
 
 export function getBlogById(id: number) {
     return blogs.find(blog => blog.id === id)
@@ -17,7 +18,12 @@ export default async function BlogDetailScreen ({ params }:{ params: Promise<{id
         <div className="max-w-2xl py-10 px-4">
             <h1 className="text-2xl font-semibold">{blog.title}</h1>
             <p className="mt-1 text-sm text-gray-500">By {blog.author}</p>
-            <p className="mt-1 text-sm text-gray-500">{blog.likes} likes</p>
+            <form action={likeBlog}>
+                <input type="hidden" name="id" value={blog.id} />
+                <button className="mt-1 text-sm text-gray-500 hover:text-red-500">
+                    ❤️ {blog.likes} likes
+                </button>
+            </form>
             <a
                 href={blog.url}
                 target="_blank"
