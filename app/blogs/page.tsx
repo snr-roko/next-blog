@@ -1,3 +1,5 @@
+import { getBlogs } from "@/services/blogService";
+
 export type Blog = {
     id: number;
     title: string;
@@ -6,24 +8,9 @@ export type Blog = {
     likes: number;
 }
 
-export const blogs: Blog[] = [
-        {
-            id: 1,
-            title: "Announcing Next.js 13",
-            author: "Vercel",
-            url: "https://nextjs.org/blog/next-13",
-            likes: 10,
-        },
-        {
-            id: 2,
-            title: "What’s New in Next.js 14",
-            author: "Vercel",
-            url: "https://nextjs.org/blog/next-14",
-            likes: 5,
-        },
-    ]
-
 export default async function Blogs ({searchParams}: {searchParams: Promise<{filter? : string}>}) {
+    const blogs = await getBlogs()
+    
     const sortedBlogs = [...blogs].sort((a, b) => b.likes - a.likes)
     
     const {filter} = await searchParams
