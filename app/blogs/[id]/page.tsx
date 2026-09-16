@@ -1,16 +1,12 @@
 import { notFound } from "next/navigation";
-import { blogs } from "../page";
 import { likeBlog } from "@/actions/likeBlogAction";
-
-export function getBlogById(id: number) {
-    return blogs.find(blog => blog.id === id)
-}
+import { findBlogById } from "@/services/blogService";
 
 export default async function BlogDetailScreen ({ params }:{ params: Promise<{id: string}>}) {
 
     const {id} = await params
 
-    const blog = getBlogById(parseInt(id))
+    const blog = await findBlogById(Number(id))
 
     if (!blog) notFound()
 

@@ -7,7 +7,7 @@ export function getBlogs() {
     return db.query.blogs.findMany()
 }
 
-export function getBlogById(id: number) {
+export function findBlogById(id: number) {
     return db.query.blogs.findFirst({
         where: eq(blogs.id, id)
     })
@@ -23,7 +23,7 @@ export async function createBlog(blog: Blog) {
 }
 
 export async function increaseBlogLikes(id: number) {
-    const blog = await getBlogById(id)
+    const blog = await findBlogById(id)
 
     if (blog) {
         await db.update(blogs).set({
